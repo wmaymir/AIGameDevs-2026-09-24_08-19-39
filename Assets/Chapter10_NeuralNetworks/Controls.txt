@@ -1,0 +1,5 @@
+Controls
+
+Chapter 10 - Neural Networks
+Keyboard: Arrow keys to move around.
+  	  Space Bar to pause game.

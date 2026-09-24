@@ -1,0 +1,5 @@
+Controls
+
+Chapter 9 - Genetic Algorithms
+Keyboard: Left & Right arrow keys to rotate.
+	  Space Bar to thrust.

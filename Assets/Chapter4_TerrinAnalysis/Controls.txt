@@ -1,0 +1,6 @@
+Controls
+
+Chapter 4 - Terrain Analysis
+On Screen Buttons
+Spawn - Spawns a new alien at home.
+Regenerate Grid - Regereates a new environment.

@@ -1,0 +1,6 @@
+Controls
+
+Chapter 7 - Fuzzy Logic
+Mouse: Hold Left button down to aim.
+	   Release Left button to enter Power stage.
+	   Hold Right button until desired power level reached.

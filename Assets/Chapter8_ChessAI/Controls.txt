@@ -1,0 +1,5 @@
+Controls
+
+Chapter 8 - Chess Ai
+Mouse: 	Select a piece with left button.
+	Select a position to move to with Left button.

@@ -1,0 +1,5 @@
+Controls
+
+Chapter 3 - Steering Behaviours
+Keyboard: Arrow keys to move around.
+		  Space Bar to fire (Hold for continuous firing)

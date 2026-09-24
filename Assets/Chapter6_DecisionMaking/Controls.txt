@@ -1,0 +1,7 @@
+Controls
+
+Chapter 6 - Decision Making
+Keyboard: Arrow keys to move around.
+	  Press 1 - Finite State Machine approach
+	  Press 2 - Behaviour Tree approach
+	  Press 3 - Stack-based approach.

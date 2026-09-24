@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5332469085766411126
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5332469085766411125}
+  - component: {fileID: 5332469085766411130}
+  - component: {fileID: 5332469085766411131}
+  - component: {fileID: 5332469085766411124}
+  m_Layer: 5
+  m_Name: ChessPiece
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5332469085766411125
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5332469085766411126}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 87.5, y: 87.5}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5332469085766411130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5332469085766411126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a984903e5abd5741b5fc27dc4001d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pieceImage: {fileID: 5332469085766411124}
+  whiteSprites:
+  - {fileID: 21300000, guid: 68018b73e985f784ea9129e3ed49abb2, type: 3}
+  - {fileID: 21300000, guid: 731fc81a22e68964d86bcb222305355d, type: 3}
+  - {fileID: 21300000, guid: 6987011151af5004c80b585e9314428e, type: 3}
+  - {fileID: 21300000, guid: cb31a5272b6c49942bc1d3fef7ebf744, type: 3}
+  - {fileID: 21300000, guid: e37a12e02981db54889355c8d3713e43, type: 3}
+  - {fileID: 21300000, guid: 660c29bfb9a63834c939473e6d907b91, type: 3}
+  blackSprites:
+  - {fileID: 21300000, guid: 38c3e843f88d0b744a683dc6bce947b4, type: 3}
+  - {fileID: 21300000, guid: 5fc118c611f85e84683bf3a431af68a7, type: 3}
+  - {fileID: 21300000, guid: 49ccf031a9f01cb4d93209028c0b0256, type: 3}
+  - {fileID: 21300000, guid: 3d9f2c78b7cdeaa43957f3129a85305e, type: 3}
+  - {fileID: 21300000, guid: 3676a55c643f68d459cc365daced2a31, type: 3}
+  - {fileID: 21300000, guid: 777c86a304ba9e04fb8c5f5dc8a2bdbf, type: 3}
+--- !u!222 &5332469085766411131
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5332469085766411126}
+  m_CullTransparentMesh: 0
+--- !u!114 &5332469085766411124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5332469085766411126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 68018b73e985f784ea9129e3ed49abb2, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0

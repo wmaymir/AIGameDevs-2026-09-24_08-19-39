@@ -1,0 +1,40 @@
+Controls
+
+Chapter 2 - Math
+Mouse: Press and hold Left mouse button.
+
+Chapter 3 - Steering Behaviours
+Keyboard: Arrow keys to move around.
+		  Space Bar to fire (Hold for continuous firing)
+
+Chapter 4 - Terrain Analysis
+On Screen Buttons
+Spawn - Spawns a new alien at home.
+Regenerate Grid - Regereates a new environment.
+
+Chapter 5 - Pathfinding
+- Use on Screen buttons to set up an environment. It is possible to place the start, end and obstales yourself, or to randomly generate one.
+- Use on screen buttons to choose an algorithm, then select Stepped Search or Full Search to see the algorithm solve the problem.
+
+Chapter 6 - Decision Making
+Keyboard: Arrow keys to move around.
+	  Press 1 - Finite State Machine approach
+	  Press 2 - Behaviour Tree approach
+	  Press 3 - Stack-based approach.
+
+Chapter 7 - Fuzzy Logic
+Mouse: Hold Left button down to aim.
+	   Release Left button to enter Power stage.
+	   Hold Right button until desired power level reached.
+
+Chapter 8 - Chess Ai
+Mouse: 	Select a piece with left button.
+	Select a position to move to with Left button.
+
+Chapter 9 - Genetic Algorithms
+Keyboard: Left & Right arrow keys to rotate.
+	  Space Bar to thrust.
+
+Chapter 10 - Neural Networks
+Keyboard: Arrow keys to move around.
+  	  Space Bar to pause game.

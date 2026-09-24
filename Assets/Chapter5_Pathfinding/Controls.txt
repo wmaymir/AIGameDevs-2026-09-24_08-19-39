@@ -1,0 +1,5 @@
+Controls
+
+Chapter 5 - Pathfinding
+- Use on Screen buttons to set up an environment. It is possible to place the start, end and obstales yourself, or to randomly generate one.
+- Use on screen buttons to choose an algorithm, then select Stepped Search or Full Search to see the algorithm solve the problem.
