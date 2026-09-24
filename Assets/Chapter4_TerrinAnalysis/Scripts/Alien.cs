@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Newtonsoft.Json.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -103,11 +104,70 @@ public class Alien : MonoBehaviour
 
         if (bHaveFood == false)
         {
-            //Search for Food.
+            do
+            {
+                // Search for Food
+
+                // Store the lowest value we got
+                float fLowestValue = 1.0f;
+
+                // Store the best index, corresponding to that value
+                // initial value is set to -1 so it's not valid outcome of the loop
+                int bestIndex = -1;
+
+                // I represents the index
+                for (int i = 0; i <= 3; i++)
+                {
+
+                    // Makes sure the value is numeric
+                    // NaN means "Not a Number"
+                    if (!float.IsNaN(values[i]))
+                    {
+
+                        // Iterate through our surrounding values to find the lowest one
+                        if (bestIndex == -1) //or, if we haven't started iterating through indexes yet
+                        {
+
+                            fLowestValue = values[i];
+                            bestIndex = i;
+                        }
+                        else
+                        {
+
+                            if (values[i] < fLowestValue) //or, if the value we are iterating into is lower than the lowest one we've found
+                            {
+
+                                fLowestValue = values[i];
+                                bestIndex = i;
+                            }
+                        }
+                    }
+                }
+
+                //set the row and column indexes for the desired position
+                SetDesiredPositions((eAlienMovementDirection)bestIndex, ref desiredRow, ref desiredCol);
+
+                //sets it as our previous position
+                previousDirection = (eAlienMovementDirection)bestIndex;
+
+                //verifies if the move is valid
+                bFoundAValidMove = IsAValidMove(desiredRow, desiredCol);
+
+            //the condition for the do while loop is that the move is not valid
+            } while (bFoundAValidMove == false);
+
+            //add a value based upon how many moves we have made away from the nest
+            float fHeat = ((float)(numberOfMovesUntilDeath - currentMoveCount)) / (float)numberOfMovesUntilDeath;
+
+            //AdjustHeat influences the environment with this calculated heat
+            AdjustHeat(fHeat);
+
+            //check: did we find food!?
+            CheckForFood();
 
 
         }
-        else
+        else 
         {
             //Follow heat of the grid to get home.
 
