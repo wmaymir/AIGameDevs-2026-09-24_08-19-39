@@ -153,7 +153,7 @@ public class Alien : MonoBehaviour
                 //verifies if the move is valid
                 bFoundAValidMove = IsAValidMove(desiredRow, desiredCol);
 
-            //the condition for the do while loop is that the move is not valid
+                //the condition for the do while loop is that the move is not valid
             } while (bFoundAValidMove == false);
 
             //add a value based upon how many moves we have made away from the nest
@@ -167,10 +167,96 @@ public class Alien : MonoBehaviour
 
 
         }
-        else 
+        else
         {
-            //Follow heat of the grid to get home.
 
+            // This will check for all the nearby cells and whether or not they have heat values of 0.
+
+            bool bAllDirectionsScoredZero = true;
+
+            // Stores the highest heat value seen.
+
+            float fHighestValue = -1.0f;
+
+            // Stores the direction that has the highest value.
+
+            int bestIndex = -1;
+
+            // Checks all directions for valid moves
+
+            for (int index = 0; index <= 3; index++)
+            {
+
+                // Checks heat values, either assigning -1 if there is no value, or getting the current value.
+
+                if (!float.IsNaN(values[index]))
+                {
+
+                    if (bestIndex == -1)
+                    {
+
+                        fHighestValue = values[index];
+                        bestIndex = index;
+                    }
+                    else
+                    {
+
+                        if (values[index] > fHighestValue)
+                        {
+
+                            fHighestValue = values[index];
+                            bestIndex = index;
+                        }
+                    }
+                }
+
+                // If there is a heat map signature in a possible moving direction, this is false.
+
+                if (values[index] > 0.0f)
+                {
+
+                    bAllDirectionsScoredZero = false;
+                }
+
+                // If there is a heat map signature, prefer to move to the hottest one.
+
+                if (bAllDirectionsScoredZero == false)
+                {
+
+                    SetDesiredPositions((eAlienMovementDirection) bestIndex, ref desiredRow, ref desiredCol);
+                }
+
+                // If there is not, continue in the previous direction so long as it is a valid move.
+
+                else
+                {
+
+                    do
+                    {
+
+                        SetDesiredPositions(previousDirection, ref desiredRow, ref desiredCol);
+                        bFoundAValidMove = IsAValidMove(desiredRow, desiredCol);
+
+                        // If that move isn't valid, then iterate through the other direcitons looking for one.
+
+                        if (bFoundAValidMove == false) {
+
+                            if (previousDirection + 1 == eAlienMovementDirection.MaxMoves)
+                            {
+
+                                previousDirection = eAlienMovementDirection.Right;
+                            }
+                            else
+                            {
+
+                                previousDirection++;
+                            }
+                        }
+                    } while (bFoundAValidMove == false);
+                }
+                CheckForHome();
+                AdjustHeat(fCoolDownAmount);
+            }
         }
 
         //Make the move.
