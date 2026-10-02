@@ -254,6 +254,8 @@ public class Alien : MonoBehaviour
                         }
                     } while (bFoundAValidMove == false);
                 }
+
+                //Check to see if the alien has made it home and make the map's heat go down.
                 CheckForHome();
                 AdjustHeat(fCoolDownAmount);
             }
