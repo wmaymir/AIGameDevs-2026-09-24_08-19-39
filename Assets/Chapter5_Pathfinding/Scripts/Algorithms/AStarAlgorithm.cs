@@ -60,10 +60,10 @@ public class AStarAlgorithm : BaseAlgorithm
                     for (int i = 0; i < childObjects.Count; i++)
                     {
 
-                        //Manhattan distance- actual distance travelled
+                        //Actual distance travelled
                         g = currentNode.g + GetEuclideanDistance(childObjects[i], currentObject);
 
-                        //Distance to the target
+                        //Manhattan distance - distance to the target
                         h = GetManhattanDistance(childObjects[i], targetObject);
 
                         //Total cost is f
