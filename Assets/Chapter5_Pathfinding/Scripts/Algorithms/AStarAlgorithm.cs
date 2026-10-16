@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AStarAlgorithm : BaseAlgorithm
 {
+    //OPEN list is for options that haven't been searched, CLOSED is for nodes that have already been searched. Obstacles are null.
     private List<GameObject> OpenList   = new List<GameObject>();
     private List<GameObject> ClosedList = new List<GameObject>();
 
@@ -12,14 +13,112 @@ public class AStarAlgorithm : BaseAlgorithm
     public override void Search()
     {
         Debug.Log("---AStar Search---");
-        
-        //Todo: Add code here.
 
+        float g, h, f;
+
+        //Clear out old info
+        Path.Clear();
+        OpenList.Clear();
+        ClosedList.Clear();
+
+        //Add starting node to OPEN list
+        OpenList.Add(Grid.grid[Grid.StartX, Grid.StartY]);
+
+        //Get target object for later
+        GameObject targetObject = Grid.grid[Grid.TargetX, Grid.TargetY];
+        Node targetNode = targetObject.GetComponent<Node>();
+
+        while (OpenList.Count > 0)
+        {
+
+            //Get cheapest node from OPEN list - lowest f value
+            int indexOfCheapestNode = FindCheapestNodeInOpenList();
+            GameObject currentObject = OpenList[indexOfCheapestNode];
+
+            //Not obstacle or edge of map
+            if (currentObject != null)
+            {
+
+                //Is this object the target?
+                if (currentObject == targetObject)
+                {
+                    ConstructPath();
+                    UpdateVisuals();
+                    return;
+                }
+
+                //Get current node's details
+                Node currentNode = currentObject.GetComponent<Node>();
+                Cell currentCell = currentObject.GetComponent<Cell>();
+                if (currentNode != null && currentCell != null)
+                {
+
+                    //Get all connected nodes
+                    List<GameObject> childObjects = GetChildObjects(currentCell);
+
+                    //Calculate costs for each connecting node - iterating through child objects
+                    for (int i = 0; i < childObjects.Count; i++)
+                    {
+
+                        //Manhattan distance- actual distance travelled
+                        g = currentNode.g + GetEuclideanDistance(childObjects[i], currentObject);
+
+                        //Distance to the target
+                        h = GetManhattanDistance(childObjects[i], targetObject);
+
+                        //Total cost is f
+                        f = g + h;
+
+                        //Get access to node object
+                        Node childNode = childObjects[i].GetComponent<Node>();
+                        if (childNode != null)
+                        {
+                            //Retain whether value change is necessary
+                            bool setValues = false;
+
+                            //Check if this node is on OPEN or CLOSED list
+                            if (IsInList(ClosedList, childObjects[i]) || IsInList(OpenList, childObjects[i]))
+                            {
+
+                                //Check if it is cheaper to get this node from here
+                                if (f < childNode.f)
+                                {
+                                    setValues = true;
+                                }
+                            }
+                            else
+                            {
+
+                                //Add to OPEN list
+                                OpenList.Add(childObjects[i]);
+
+                                //Store calculated values
+                                setValues = true;
+                            }
+
+                            //Change values stored for this node
+                            if (setValues)
+                            {
+                                childNode.g = g;
+                                childNode.h = h;
+                                childNode.f = f;
+                                childNode.ParentX = currentCell.xPos;
+                                childNode.ParentY = currentCell.yPos;
+                            }
+                        }
+                    }
+                }
+
+                //Remove from OPEN list and add to CLOSED list
+                OpenList.Remove(currentObject);
+                ClosedList.Add(currentObject);
+            }
+        }
 
 
         UpdateVisuals();
 
-        //Completed, so next search will be the first pass (used in stepped search).
+        //Completed, so next search will be the first pass (used in stepped search). if there is no information in the list, then we must be starting.
         firstPass = true;
     }
 
