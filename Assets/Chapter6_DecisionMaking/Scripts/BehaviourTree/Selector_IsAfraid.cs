@@ -6,7 +6,12 @@ public class Selector_IsAfraid : TreeNode_Base
 
     public Selector_IsAfraid()
     {
-        //Delete me.
+        //becomes node 0
+        childrenNodes.Add(new Leaf_ExitHome());
+        //becomes node 1
+        childrenNodes.Add(new Leaf_Evade());
+        //becomes node 2
+        childrenNodes.Add(new Selector_Chase());
     }
 
     //------------------------------------------------------------------------------
@@ -15,8 +20,19 @@ public class Selector_IsAfraid : TreeNode_Base
     {
         ghost.AddToCombinedAIString("Selector_IsAfraid");
 
-        //Delete me.
-        return Status.FAILURE;
+        if (ghost.IsInHome())
+        {
+            return childrenNodes[0].OnUpdate(ghost, player);
+        }
+
+        if (ghost.IsPowerPillActive())
+        {
+            return childrenNodes[1].OnUpdate(ghost, player);
+        }
+        else
+        {
+            return childrenNodes[2].OnUpdate(ghost, player);
+        }
     }
 
     //------------------------------------------------------------------------------

@@ -15,11 +15,27 @@ public class Leaf_ExitHome : TreeNode_Base
 
     public override Status OnUpdate(Ghost ghost, Player player)
     {
-        //This is for visual debug output.
+        //this is for visual debug output
         ghost.AddToCombinedAIString("Leaf_ExitHome");
 
-        //Delete me.
-        return Status.FAILURE;
+        //changes the ghost's sprite to chasing
+        ghost.ghostVisuals.SetSpriteSet(SpriteSet.Chasing);
+
+        //sets the ghost's target position for the exit
+        ghost.SetTargetBoardPosition(exitPos);
+
+        //MoveHome allows for movement in AND out of the home
+        ghost.MoveHome();
+
+        //failure is not an option for this behavior. Ghost has either SUCCESS or RUNNING
+        if (ghost.GetBoardPosition() == exitPos)
+        {
+            return Status.SUCCESS;
+        }
+        else
+        {
+            return Status.RUNNING;
+        }
     }
 
     //------------------------------------------------------------------------------
