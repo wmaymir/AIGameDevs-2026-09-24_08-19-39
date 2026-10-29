@@ -16,11 +16,24 @@ public class Leaf_MoveToPlayer : TreeNode_Base
 
     public override Status OnUpdate(Ghost ghost, Player player)
     {
-        //This is for visual debug output.
-        ghost.AddToCombinedAIString("Leaf_MoveToPlayer");
 
-        //Delete me.
-        return Status.FAILURE;
+        duration -= Time.deltaTime;
+
+        ghost.ghostVisuals.SetSpriteSet(SpriteSet.Chasing);
+        ghost.SetTargetBoardPosition(player.GetBoardPosition());
+        ghost.Move();
+
+        if (duration <= 0.0f)
+        {
+
+            duration = kMaxDuration;
+            return Status.SUCCESS;
+        }
+        else
+        {
+
+            return Status.RUNNING;
+        }
     }
 
     //------------------------------------------------------------------------------
