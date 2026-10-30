@@ -32,8 +32,32 @@ public class Leaf_MoveToRandomPosition : TreeNode_Base
     {
         ghost.AddToCombinedAIString("Leaf_MoveToRandomPosition");
 
-        //Delete me.
-        return Status.FAILURE;
+        //Deduct current duration value by delta time
+        duration -= Time.deltaTime;
+
+        //Set correct visuals for ghost
+        ghost.ghostVisuals.SetSpriteSet(SpriteSet.Chasing);
+
+        //Set already selcted random position to move to
+        ghost.SetTargetBoardPosition(randomPosition);
+
+        //Move ghost to desired position
+        ghost.Move();
+
+        //After a desired duration, we will return success to allow parent node to select another way to chase.
+        if (duration <= 0.0f)
+        {
+            duration = kMaxDuration;
+            ResetRandomPosition();
+
+            return Status.SUCCESS;
+        }
+
+        //Otherwise, keep running this leaf node
+        else
+        {
+            return Status.RUNNING;
+        }
     }
 
     //------------------------------------------------------------------------------

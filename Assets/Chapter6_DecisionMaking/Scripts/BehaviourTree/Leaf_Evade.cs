@@ -24,8 +24,17 @@ public class Leaf_Evade : TreeNode_Base
         //This is for visual debug output.
         ghost.AddToCombinedAIString("Leaf_Evade");
 
-        //Delete me.
-        return Status.FAILURE;
+        //Change visuals of ghost to show they are evading
+        ghost.ghostVisuals.SetSpriteSet(SpriteSet.Evading);
+
+        //Set desired position to randomly generated position that is outside of environment
+        ghost.SetTargetBoardPosition(randomEvadePosition);
+
+        //Move ghost
+        ghost.Move();
+
+        //Since the ghost will never reach this position, always return status of RUNNING
+        return Status.RUNNING;
     }
 
     //------------------------------------------------------------------------------
